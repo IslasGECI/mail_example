@@ -28,7 +28,7 @@ jobs:
         # Optional (recommended) mail server password:
         password: ${{secrets.ANALISTA_PASSWORD}}
         # Required mail subject:
-        subject: Github Actions job result
+        subject: Github Actions Job
         # Required recipients' addresses:
         to: ciencia.datos@islas.org.mx
         # Required sender full name (address can be skipped):
