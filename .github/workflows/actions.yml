@@ -1,0 +1,18 @@
+name: Make PDF
+on:
+  pull_request:
+    branches:
+      - develop
+      - main
+  push:
+    branches:
+      - develop
+      - main
+jobs:
+  actions:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Copia repositorio
+      uses: actions/checkout@v2
+    - name: Produce PDF
+      run: docker run --rm --volume ${PWD}:/workdir/reports islasgeci/latex make pdf
