@@ -16,3 +16,29 @@ jobs:
       uses: actions/checkout@v2
     - name: Produce PDF
       run: docker run --rm --volume ${PWD}:/workdir/reports islasgeci/latex make pdf
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        # Required mail server address:
+        server_address: smtp.gmail.com
+        # Required mail server port:
+        server_port: 465
+        # Optional (recommended): mail server username:
+        username: ${{secrets.ANALISTA_EMAIL}}
+        # Optional (recommended) mail server password:
+        password: ${{secrets.ANALISTA_PASSWORD}}
+        # Required mail subject:
+        subject: Github Actions job result
+        # Required recipients' addresses:
+        to: ciencia.datos@islas.org.mx
+        # Required sender full name (address can be skipped):
+        from: Analista CI/CD # <user@example.com>
+        # Optional whether this connection use TLS (default is true if server_port is 465)
+        secure: true
+        # Optional plain body:
+        body: Correo enviado desde Actions del repo ${{github.repository}} ;)
+        ignore_cert: true
+        # Optional attachments:
+        attachments: paper.pdf
+        # Optional priority: 'high', 'normal' (default) or 'low'
+        priority: high
